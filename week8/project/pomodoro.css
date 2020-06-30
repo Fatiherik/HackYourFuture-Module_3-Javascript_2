@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css?family=Russo+One&display=swap");
+
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Russo One", sans-serif;
+  letter-spacing: 1px;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(25, 65, 71);
+  color: #ccc;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+.arrows {
+  margin: auto;
+  margin-top: 20px;
+  font-size: 3em;
+  width: 50%;
+  display: flex;
+}
+
+input {
+  display: none;
+}
+
+.time-counter {
+  margin: 20px auto;
+  /* padding: 8px; */
+  border: 8px solid rgba(20, 47, 51, 0.788);
+  border-radius: 50px;
+}
+
+h3 {
+  margin: 30px 30px 0 30px;
+  font-size: 3em;
+  text-align: center;
+}
+
+#minCounter,
+#secCounter {
+  margin: 30px 30px 0 30px;
+  font-size: 5em;
+  text-align: center;
+}
+#points {
+  font-size: 5em;
+  text-align: center;
+}
+
+span {
+  cursor: pointer;
+}
+
+.counterAndPuse {
+  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+  margin: 20px auto;
+}

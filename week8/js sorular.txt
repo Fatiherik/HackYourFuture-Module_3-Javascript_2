@@ -1,0 +1,224 @@
+8. Week
+
+Exercise 1: The odd ones out
+
+Look at the following code snippet:
+
+function doubleEvenNumbers(numbers) {
+  const newNumbers = [];
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 0) {
+      newNumbers.push(numbers[i] * 2);
+    }
+  }
+  return newNumbers;
+}
+
+const myNumbers = [1, 2, 3, 4];
+console.log(doubleEvenNumbers(myNumbers)); // Logs "[4, 8]" to the console
+The doubleEvenNumbers function returns only the even numbers in the array myNumbers and doubles them. Like you've learned in the README, this block of code isn't easy to decipher.
+Let's rewrite it.
+
+Using the map and filter functions, rewrite the doubleEvenNumbers function.
+
+Solution:
+
+function doubleEvenNumbers(numbers) {
+  return numbers.filter(number => number % 2 === 0).map(number => number * 2);
+}
+
+const myNumbers = [1, 2, 3, 4];
+console.log(doubleEvenNumbers(myNumbers)); // Logs "[4, 8]" to the console
+
+Exercise 2: What's your Monday worth?
+
+When you're a developer at a big company your Monday could look something like this:
+
+const mondayTasks = [
+  {
+    name: 'Daily standup',
+    duration: 30, // specified in minutes
+  },
+  {
+    name: 'Feature discussion',
+    duration: 120,
+  },
+  {
+    name: 'Development time',
+    duration: 240,
+  },
+  {
+    name: 'Talk to different members from the product team',
+    duration: 60,
+  },
+];
+Let's assume your hourly rate is €25. How much would you earn on that day?
+
+Write a program that finds out what your hourly rate on a Monday would be
+Use the map array function to take out the duration time for each task.
+Multiply each duration by a per-hour rate for billing and sum it all up.
+Output a formatted Euro amount, rounded to Euro cents, e.g: €11.34.
+Make sure the program can be used on any array of objects that contain a duration property with a number value
+
+Solution:
+
+function dayWorth(tasks, hourlyRate) {
+  // put your code in here, the function does returns a euro formatted string
+  const totalTime = tasks.map(task => task.duration).reduce((a, b) => a + b, 0);
+  let totalBill = (totalTime / 60) * hourlyRate;
+  return 'Total daily bill is €' + Number(totalBill).toFixed(2);
+}
+
+const mondayTasks = [
+  {
+    name: 'Daily standup',
+    duration: 30, // specified in minutes
+  },
+  {
+    name: 'Feature discussion',
+    duration: 120,
+  },
+  {
+    name: 'Development time',
+    duration: 240,
+  },
+  {
+    name: 'Talk to different members from the product team',
+    duration: 60,
+  },
+];
+
+console.log(dayWorth(mondayTasks, 25));
+console.log(dayWorth(mondayTasks, 13.37));
+
+Exercise 3: Lemon allergy
+
+Your mom bought you a basket of fruit, because you're doing so well in HackYourFuture. How sweet of her!
+
+const fruitBasket = ['Apple', 'Lemon', 'Grapefruit', 'Lemon', 'Banana', 'Watermelon', 'Lemon'];
+However, she forgot that you are allergic to lemons! Let's quickly dispose of them before you get an attack.
+
+Write a function
+Use the filter array function to take out the lemons
+Output a string that says: "My mom bought me a fruit basket, containing [array of fruits] !"
+
+Solution:
+
+function takeOutLemons(basket) {
+  // your code goes in here. The output is a string
+  let new_basket = basket.filter(fruit => fruit !== 'Lemon');
+  return 'My mom bought me a fruit basket, containing ' + new_basket;
+}
+
+const fruitBasket = ['Apple', 'Lemon', 'Grapefruit', 'Lemon', 'Banana', 'Watermelon', 'Lemon'];
+
+console.log(takeOutLemons(fruitBasket));
+
+Exercise 4: Collective age
+
+Have you ever wondered how old the HackYourFuture team members are? Or better yet: what the collective age is? Let's find out!
+
+const hackYourFutureMembers = [
+  { name: 'Wouter', age: 33 },
+  { name: 'Federico', age: 32 },
+  { name: 'Noer', age: 27 },
+  { name: 'Tjebbe', age: 22 },
+];
+Write a program that calculates the combined age of every member
+Make use of the map function to get the ages
+It should contain a function that takes a callback
+The callback adds all the ages together and returns the number
+The main function should log the string "The collective age of the HYF team is: [number]" to the console, and afterwards return the number
+
+Solution:
+
+function collectiveAge(people) {
+  // return the sum of age for all the people
+  let list = people.map((member) => member.age);
+  return list.reduce((total, ages) => total + ages, 0);
+}
+
+const hackYourFutureMembers = [
+  {
+    name: 'Wouter',
+    age: 33,
+  },
+  {
+    name: 'Federico',
+    age: 32,
+  },
+  {
+    name: 'Noer',
+    age: 27,
+  },
+  {
+    name: 'Tjebbe',
+    age: 22,
+  },
+];
+
+console.log('The collective age of the HYF team is: ' + collectiveAge(hackYourFutureMembers));
+
+Exercise 5: My favorite hobbies
+
+I've got a couple of hobbies that I want to showcase in a webpage.
+
+const myHobbies = [
+  'Meditation',
+  'Reading',
+  'Programming',
+  'Hanging out with friends',
+  'Going to the gym',
+];
+Write a program that outputs each of these inside an HTML file
+Create an HTML and JavaScript file, link them together
+Use the map and/or forEach function to put each hobby into a list item
+Output the list items in an unordered list
+
+Solution:
+
+js file:
+
+function createHTMLList(arr) {
+  // your code goes in here
+  const ul = document.createElement('ul');
+  document.body.appendChild(ul);
+
+  arr.forEach(element => {
+    const li = document.createElement('li');
+    li.innerText = element;
+    ul.appendChild(li);
+  });
+
+  return ul;
+}
+
+const myHobbies = [
+  'Meditation',
+  'Reading',
+  'Programming',
+  'Hanging out with friends',
+  'Going to the gym',
+];
+
+let ulElement = createHTMLList(myHobbies);
+
+document.querySelector('#hobbies').appendChild(ulElement);
+
+html file:
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Favorite Hobbies</title>
+  </head>
+
+  <body>
+    <h1>My Favorite Hobbies</h1>
+    <div id="hobbies">
+      <!-- put the ul element here -->
+    </div>
+    <script src="ex5-myFavoriteHobbies.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pomodoro Clock</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="pomodoro.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="session-length">
+        <form name="custom">
+          <input name="minutes" />
+        </form>
+
+        <audio id="on" src="beep-23.mp3"></audio>
+        <audio id="end" src="beep-24.mp3"></audio>
+
+        <h1>Pomodoro Clock</h1>
+        <h2>Session Length</h2>
+        <div class="arrows">
+          <span id="arrow-down"
+            ><i class="fa fa-arrow-down" aria-hidden="true"></i
+          ></span>
+          <span id="session">25</span>
+          <span id="arrow-up"
+            ><i class="fa fa-arrow-up" aria-hidden="true"></i
+          ></span>
+        </div>
+      </div>
+
+      <div class="time-counter">
+        <h3>Session</h3>
+        <p class="timerDisplay">
+          <span id="minCounter">25</span><span id="points">:</span
+          ><span id="secCounter">00</span>
+        </p>
+        <p class="finsh"></p>
+        <p class="endTimer" style="text-align: center; margin: 30px auto;"></p>
+      </div>
+
+      <div class="counterAndPuse">
+        <i id="play" class="fa fa-play" aria-hidden="true"></i>
+        <i id="stop" class="fa fa-pause" aria-hidden="true"></i>
+      </div>
+    </div>
+    <script src="pomodoro.js"></script>
+  </body>
+</html>

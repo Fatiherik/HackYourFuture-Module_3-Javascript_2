@@ -1,0 +1,342 @@
+7. Week
+
+Exercise 1: The book list
+
+I'd like to display my three favorite books inside a nice webpage!
+
+const books = [
+  {
+    title: 'The Design of Everyday Things',
+    author: 'Don Norman',
+    alreadyRead: false
+  },
+  {
+    title: 'The Most Human Human',
+    author: 'Brian Christian',
+    alreadyRead: true
+  },
+  {
+    title: 'The Pragmatic Programmer',
+    author: 'Andrew Hunt',
+    alreadyRead: true
+  }
+];
+Iterate through the array of books.
+For each book, create a <p> element with the book title and author and append it to the page.
+Use a <ul> and <li> to display the books.
+Add an <img> to each book that links to a URL of the book cover.
+Change the style of the book depending on whether you have read it (green) or not (red).
+The end result should look something like this: https://hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
+
+Solution:
+
+js.file:
+
+'use strict';
+
+function createBookList(books) {
+  // your code goes in here, return the ul element
+  const ul = document.createElement('ul');
+  ul.style.display = 'flex';
+  ul.style.padding = '20px';
+  ul.style.margin = '80px';
+  ul.style.listStyleType = 'none';
+  document.body.appendChild(ul);
+
+  books[0].url =
+    'https://images-na.ssl-images-amazon.com/images/I/51MzbjxE7bL._SX376_BO1,204,203,200_.jpg';
+  books[1].url = 'https://i.pinimg.com/originals/98/64/43/9864437dfb220d6e780b3a0d5b2d9dda.jpg';
+  books[2].url = 'https://i.pinimg.com/originals/24/72/e4/2472e42ecb38a2366519621287ddb72c.jpg';
+
+  for (let book of books) {
+    const li = document.createElement('li');
+    li.style.padding = '10px';
+    li.style.margin = '30px';
+
+    const bookPtag = document.createElement('p');
+    bookPtag.innerText = book.title + ' - ' + book.author;
+    li.appendChild(bookPtag);
+
+    const bookImg = document.createElement('img');
+    bookImg.src = book.url;
+    bookImg.style.width = '300px';
+    bookImg.style.height = '350px';
+    li.appendChild(bookImg);
+
+    if (book.alreadyRead) {
+      li.style.backgroundColor = 'green';
+    } else {
+      li.style.backgroundColor = 'red';
+    }
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+const books = [
+  {
+    title: 'The Design of Everyday Things',
+    author: 'Don Norman',
+    alreadyRead: false,
+  },
+  {
+    title: 'The Most Human Human',
+    author: 'Brian Christian',
+    alreadyRead: true,
+  },
+  {
+    title: 'The Pragmatic Programmer',
+    author: 'Andrew Hunt',
+    alreadyRead: true,
+  },
+];
+
+let ulElement = createBookList(books);
+
+document.querySelector('#bookList').appendChild(ulElement);
+
+html file:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List</title>
+  </head>
+
+  <body>
+    <h1>My Book List</h1>
+    <div id="bookList">
+      <!-- put the ul element here -->
+    </div>
+    <script src="ex1-bookList.js"></script>
+  </body>
+</html>
+
+Exercise 2: About me
+
+Given this HTML:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>About Me</title>
+  </head>
+  <body>
+    <h1>About Me</h1>
+
+    <ul>
+      <li>Nickname: <span id="nickname"></span></li>
+      <li>Favorite food: <span id="fav-food"></span></li>
+      <li>Hometown: <span id="hometown"></span></li>
+    </ul>
+  </body>
+</html>
+Add a script tag to the bottom of the HTML body.
+(In the JavaScript) Change the body tag's style so it has a font-family of "Arial, sans-serif".
+(In the JavaScript) Replace each of the spans (nickname, fav-food, hometown) with your own information.
+Iterate through each li and change the class to "list-item".
+(In the HTML head) Add a style tag that sets a rule for .list-item to make the color red.
+Create a new img element and set its src attribute to a picture of you. Append that element to the page.
+
+Solution:
+
+js file:
+
+'use strict';
+//Change the body tag 's style so it has a font-family of "Arial, sans-serif".
+document.body.style.fontFamily = 'Arial, sans-serif';
+
+//Replace each of the spans(nickname, fav - food, hometown) with your own information.
+document.getElementById('nickname').textContent = 'Fatih';
+document.getElementById('fav-food').textContent = 'Hamburger';
+document.getElementById('hometown').textContent = 'Istanbul';
+
+//Iterate through each li and change the class to "list-item".
+const items = document.getElementsByTagName('li');
+for (let item of items) {
+  item.className = 'list-item';
+}
+
+//Create a new img element and set its src attribute to a picture of you.Append that element to the page.
+const myImg = document.createElement('img');
+myImg.setAttribute('src', 'https://ca.slack-edge.com/T0EJTUQ87-UTW55CEUU-4f147ae12153-48');
+myImg.setAttribute('width', '25%');
+
+const ul = document.querySelector('ul');
+document.body.insertBefore(myImg, ul);
+
+html file:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>About Me</title>
+
+    <!-- 5. Add a style tag that sets a rule for .list-item to make the color red. -->
+    <style>
+      .list-item {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>About Me</h1>
+
+    <ul>
+      <li>Nickname: <span id="nickname"></span></li>
+      <li>Favorite food: <span id="fav-food"></span></li>
+      <li>Hometown: <span id="hometown"></span></li>
+    </ul>
+
+    <!-- 1. add a script tag here the links to ex2-aboutMe.js -->
+    <script src="ex2-aboutMe.js"></script>
+  </body>
+</html>
+
+
+Exercise 3: The logo hijack
+
+No homepage is safe from the logo bandit! Everytime he sees a Google Logo he replaces it with a logo from HackYourfuture instead: https://www.hackyourfuture.dk/static/logo-dark.svg.
+
+In this exercise you're expected to write a JavaScript function that can be executed in the console of the Google website.
+
+Find out how to select the element that contains the Google logo, and store it in a variable
+Modify the source and sourceset of the logo so that it's replaced by the HackYourFuture logo instead
+
+Solution:
+
+'use strict';
+
+function hijackGoogleLogo() {
+  // your code goes in here
+  const logo = document.getElementById('hplogo');
+  logo.src = 'https://www.hackyourfuture.dk/static/logo-dark.svg';
+  logo.srcset = 'https://www.hackyourfuture.dk/static/logo-dark.svg';
+}
+
+hijackGoogleLogo();
+
+Exercise 4: What's the time?
+
+Why wear a watch when you can check the time, live in your webpage?
+
+Create a basic HTML file
+Include a script tag and link the JavaScript file
+Inside the JS file, write a function that adds the current time to the webpage. Make sure it's written in the HH:MM:SS notation (hour, minute, second). Hint: use setInterval() to make sure the time stays current
+Have the function execute when it's loading in the browser
+
+js file:
+
+'use strict';
+
+function displayCurrentTime() {
+  // your code goes in here
+  const dateTime = new Date();
+  const time = document.getElementById('container');
+  time.innerHTML = dateTime.toLocaleTimeString();
+}
+
+window.onload = setInterval(displayCurrentTime, 1000);
+
+html file:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What's the Time</title>
+    <style>
+      div {
+        background-color: rgb(120, 217, 241);
+        color: #000;
+        border: 2px solid rgb(70, 10, 235);
+        margin: 10% auto;
+        width: 200px;
+        height: 60px;
+        font-size: 50px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="ex4-whatsTheTime.js"></script>
+  </body>
+</html>
+
+Exercise 5: The cat walk
+
+Start with this webpage, which has a single img tag of an animated GIF of a cat walking.
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cat Walk</title>
+  </head>
+  <body>
+    <img style="position:absolute;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif" />
+  </body>
+</html>
+Create a variable to store a reference to the img.
+Change the style of the img to have a "left" of "0px", so that it starts at the left hand of the screens.
+Create a function called catWalk() that moves the cat 10 pixels to the right of where it started, by changing the "left" style property.
+Call that function every 50 milliseconds. Your cat should now be moving across the screen from left to right. Hurrah!
+When the cat reaches the right-hand of the screen, restart them at the left hand side ("0px"). So they should keep walking from left to right across the screen, forever and ever.
+When the cat reaches the middle of the screen, replace the img with an image of a cat dancing (use this URL: https://tenor.com/StFI.gif), keep it dancing for 5 seconds, and then replace the img with the original image and have it continue the walk.
+The end result should look and behave similar to https://dancingcat-sandbox.mxapps.io
+
+js file:
+
+'use strict';
+// Create a variable to store a reference to the img.
+const cat = document.querySelector('img');
+
+// Change the style of the img to have a "left" of "0px", so that it starts at the left hand of the screens.
+cat.style.left = '0px';
+let currentPosition = parseInt(cat.style.left);
+const middleOfScreenPoint = window.innerWidth / 2;
+
+function catWalk() {
+  currentPosition += 10;
+  cat.style.left = currentPosition + 'px';
+
+  if (currentPosition > window.innerWidth) {
+    cat.style.left = '0px';
+    currentPosition = parseInt(cat.style.left);
+  } else if (currentPosition > middleOfScreenPoint && currentPosition < middleOfScreenPoint + 10) {
+    clearInterval(interval);
+    cat.src = 'https://media1.tenor.com/images/2de63e950fb254920054f9bd081e8157/tenor.gif';
+    window.setTimeout(function() {
+      cat.src = 'http://www.anniemation.com/clip_art/images/cat-walk.gif';
+      interval = setInterval(catWalk, 50);
+      currentPosition = parseInt(cat.style.left) + 11;
+    }, 5000);
+  } else {
+    currentPosition = parseInt(cat.style.left);
+  }
+}
+
+let interval = setInterval(catWalk, 50);
+
+html file:
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cat Walk</title>
+  </head>
+
+  <body>
+    <img style="position:absolute;" src="http://www.anniemation.com/clip_art/images/cat-walk.gif" />
+
+    <script src="ex5-catWalk.js"></script>
+  </body>
+</html>
